@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import cars from "./practice";
-import animals, { useAnimals } from "./data";
+//import animals, { useAnimals } from "./data";
 
 // [cat, dog] = [animals[0], animals[1]];
 // var cat, dog;
@@ -21,34 +21,54 @@ import animals, { useAnimals } from "./data";
 // console.log(dog.sound);
 
 // import animals from "practice";
-var tesla, honda, teslaTopSpeed, teslaTopColour, hondaTopSpeed, hondaTopColour;
+// var tesla, honda, teslaTopSpeed, teslaTopColour, hondaTopSpeed, hondaTopColour;
 
-[tesla, honda] = [cars[0], cars[1]];
-// console.log(tesla.speedStats.topSpeed);
+// [tesla, honda] = [cars[0], cars[1]];
+// // console.log(tesla.speedStats.topSpeed);
 
-// console.log(
+// // console.log(
+// //   tesla.coloursByPopularity[0] + " , " + tesla.coloursByPopularity[1]
+// // );
+
+// [teslaTopSpeed, teslaTopColour] = [
+//   tesla.speedStats.topSpeed,
 //   tesla.coloursByPopularity[0] + " , " + tesla.coloursByPopularity[1]
-// );
+// ];
 
-[teslaTopSpeed, teslaTopColour] = [
-  tesla.speedStats.topSpeed,
-  tesla.coloursByPopularity[0] + " , " + tesla.coloursByPopularity[1]
-];
+// [hondaTopSpeed, hondaTopColour] = [
+//   honda.speedStats.topSpeed,
+//   honda.coloursByPopularity[0] + " , " + tesla.coloursByPopularity[1]
+// ];
 
-[hondaTopSpeed, hondaTopColour] = [
-  honda.speedStats.topSpeed,
-  honda.coloursByPopularity[0] + " , " + tesla.coloursByPopularity[1]
-];
+// This is Angela did it 
+const [tesla,honda] = cars;
+//console.log(tesla);
+const {speedStats : {topSpeed : teslaTopSpeed } } = tesla;
+const {speedStats: {topSpeed : hondaTopSpeed}} = honda;
+
+//console.log(teslaTopSpeed + "-"+ hondaTopSpeed);
+/** Style 1: */
+// const {coloursByPopularity:{[0]: teslaTopColour}} = tesla;
+// const {coloursByPopularity:{[0]: hondaTopColour}} = honda;
+
+/** Style 2 */
+const {coloursByPopularity:[teslaTopColour] }= tesla;
+const {coloursByPopularity:[hondaTopColour] }= honda;
+
+//console.log(teslaTopColour);
 
 ReactDOM.render(
   <div>
     <table>
-      <tr>
+    <thead>
+    <tr>
         <th>Brand</th>
         <th>Top Speed</th>
         <th>Top Colour </th>
       </tr>
-      <tr>
+    </thead>
+    <tbody>
+    <tr>
         <td>{tesla.model}</td>
         <td>{teslaTopSpeed}</td>
         <td>{teslaTopColour}</td>
@@ -58,6 +78,7 @@ ReactDOM.render(
         <td>{hondaTopSpeed}</td>
         <td>{hondaTopColour}</td>
       </tr>
+    </tbody>
     </table>
   </div>,
   document.getElementById("root")
